@@ -8,15 +8,11 @@ namespace TechnicalAsssesment.Components
     {
         [Inject] protected AppStateService _appState { get; set; } = default!;
         protected bool IsLoading = false;
-        protected override void OnAfterRender(bool firstRender)
-        {
-            
-            if(firstRender)
-            {
-                _appState.UserInformation = new();
-                StateHasChanged();
-            }
-        }
 
+        protected override void OnInitialized()
+        {
+            _appState.UserInformation = new();
+            StateHasChanged();
+        }
     }
 }

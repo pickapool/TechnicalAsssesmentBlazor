@@ -64,7 +64,23 @@ a, .btn-link {
 .blazor-error-boundary::after {
     content: "An error has occurred."
 }
-#app {
-    height: 100vh !important;
+.card {
+    background-color: aliceblue;
+}
+.input {
+    height: 40px;
+    border: 1px solid grey;
+    border-radius: 25px;
+    padding: 5px;
+    width: 100%;
+}
+.height100vh {
+    height: 100vh;
     overflow: hidden;
+}
+.width100 {
+    width: 100%;
+}
+.mud-divider {
+    border-color: grey !important;
 }

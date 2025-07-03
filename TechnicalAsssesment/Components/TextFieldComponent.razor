@@ -1,3 +1,6 @@
 ﻿@inherits TextFieldComponentBase
 
-<input type="text" value="@Value"/>
+<div class="d-flex flex-column gap-2" style="width: 100%;">
+	<span>@Label</span>
+	<input class="input" type="text" value="@Value" placeholder="Type here..."/>
+</div>

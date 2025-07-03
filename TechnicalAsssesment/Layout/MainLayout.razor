@@ -7,8 +7,10 @@
 
 @if(_appState.UserInformation == null)
 {
-    //Render 
-    <UserInformationComponent></UserInformationComponent>
+    //Render
+    <div class="height100vh width100 d-flex align-content-center justify-content-center">
+        <UserInformationComponent></UserInformationComponent>
+    </div>
 } else {
     
     <div class="page">
