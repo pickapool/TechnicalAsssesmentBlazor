@@ -1,0 +1,8 @@
+﻿@inherits UserInformationComponentBase
+
+<div class="mud-paper elevation-1">
+	@if (_appState.UserInformation != null)
+	{
+		<TextFieldComponent @bind-Value="_appState.UserInformation.UserName" Label="Name" />
+	}
+</div>
