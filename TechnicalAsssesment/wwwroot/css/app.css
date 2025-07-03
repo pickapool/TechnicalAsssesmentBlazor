@@ -71,7 +71,6 @@ a, .btn-link {
     height: 40px;
     border: 1px solid grey;
     border-radius: 25px;
-    padding: 5px;
     width: 100%;
 }
 .height100vh {
@@ -83,4 +82,16 @@ a, .btn-link {
 }
 .mud-divider {
     border-color: grey !important;
+}
+.mud-button-filled-size-small {
+    padding: 0 20px 0 20px !important;
+    height: 35px !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+#app {
+    background-color: #d0e3d0;
+}
+.border-25 {
+    border-radius: 25px !important;
 }

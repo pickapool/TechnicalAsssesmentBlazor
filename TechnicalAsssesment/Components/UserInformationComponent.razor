@@ -1,7 +1,7 @@
 ﻿@inherits UserInformationComponentBase
 
 <MudItem Class="d-flex align-items-center ma-3" xs="12" sm="10" md="8" lg="4" xl="3">
-	<MudPaper Class="width100 d-flex flex-column pa-4 gap-4 align-items-center"  Elevation="1">
+	<MudPaper Class="width100 d-flex flex-column pa-4 gap-4 align-items-center border-25" Elevation="1">
 		<MudText Typo="Typo.h6">Please enter your name</MudText>
 		<MudDivider></MudDivider>
 		<div class="d-flex flex-column align-items-center" style="width: 60%;">
@@ -10,7 +10,7 @@
 				<TextFieldComponent @bind-Value="_appState.UserInformation.UserName" Label="Name" />
 			}
 		</div>
-		<MudButton Class="text-right" Variant="Variant.Filled" Size="Size.Small">Proceed</MudButton>
+		<MudButton Class="text-right border-25" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small">Proceed</MudButton>
 	</MudPaper>
 </MudItem>
 	
