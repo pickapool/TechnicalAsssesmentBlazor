@@ -72,9 +72,7 @@
 				</MudTd>
 				<MudTd DataLabel="Note">@context.Note</MudTd>
 				<MudTd Class="text-center" DataLabel="Time">@context.Time?.ToString("HH:mm tt")</MudTd>
-				<MudTd Class="text-center" DataLabel="Duration">
-					@context.Duration
-				</MudTd>
+				<MudTd Class="text-center" DataLabel="Duration">@context.Duration</MudTd>
 			</RowTemplate>
 			<PagerContent>
 				<MudTablePager PageSizeOptions="new int[] { 10, 25, 50, 100 }" />
