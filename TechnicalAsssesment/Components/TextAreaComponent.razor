@@ -1,0 +1,15 @@
+﻿@inherits TextAreaComponentBase
+
+<div class="d-flex flex-column w-100">
+    <span class="pb-2">@Label</span>
+    <textarea class="input px-3 py-4"
+              value="@Value"
+              @onchange="OnValueChanged"
+              placeholder="Type here..."
+              style="resize: vertical; min-height: 100px;"></textarea>
+
+    @if (ShowError)
+    {
+        <small class="error-message">Field is required*</small>
+    }
+</div>

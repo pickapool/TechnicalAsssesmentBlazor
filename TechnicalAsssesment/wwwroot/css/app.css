@@ -109,8 +109,16 @@ a, .btn-link {
 .header-paper *{
     color: white;
 }
-.mud-button-filled.mud-button-filled-primary {
+.mud-button-filled.mud-button-filled-primary, .mud-dialog-title {
     background-color: #87939d !important;
+}
+.mud-dialog-title *{
+    color: white;
+    /*border-radius: 25px 25px 0 0 !important;*/
+}
+.mud-dialog {
+    border-radius: 25px !important;
+    margin: 10px;
 }
 .error-message {
     color: red;

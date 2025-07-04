@@ -18,16 +18,20 @@
 	}
 	else
 	{
-		@if (isShowActivities)
+		@if (showActivities)
 		{
 			<MudGrid Spacing="3">
 				@foreach (var activity in selectedProject.Activity)
 				{
 					<MudItem xs="12" md="3" lg="3" Class="d-flex gap-4 flex-row w-100">
-						<ActivityComponent Activity="activity.ActivityType"></ActivityComponent>
+						<ActivityComponent Project="selectedProject" Activity="activity"></ActivityComponent>
 					</MudItem>
 				}
 			</MudGrid>
 		}
+	}
+	@if(showTable)
+	{
+
 	}
 </div>

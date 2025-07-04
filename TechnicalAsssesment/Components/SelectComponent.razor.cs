@@ -30,6 +30,7 @@ namespace TechnicalAsssesment.Components
         }
         protected async Task OnProjectSelect(ProjectModel p)
         {
+            Value = p.ProjectNumber.ToString();
             ToggleDropDown();
             await SelectedProject.InvokeAsync(p);
             
