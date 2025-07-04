@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using MudBlazor;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using TechnicalAssesment.Domain.Entities;
 using TechnicalAssesment.Infrastructure;
@@ -13,6 +14,9 @@ namespace TechnicalAsssesment.Pages
         protected bool showActivities, showSkeleton, showTable, showTableLoading;
         protected ProjectModel? selectedProject;
         protected List<LogEntryModel> Logs = new();
+        private ActivityModel Activity = new();
+        private bool isActivitySelected;
+        
         protected override async Task OnInitializedAsync()
         {
             await LoadAllEntries();
@@ -30,6 +34,8 @@ namespace TechnicalAsssesment.Pages
         protected async Task LoadAllEntries()
         {
             showTableLoading = true;
+            isActivitySelected = false;
+
             await Task.Delay(1000);
 
             Logs = _appState.Projects?
@@ -44,21 +50,27 @@ namespace TechnicalAsssesment.Pages
             if (log is null) return;
 
             showTableLoading = true;
+            
             await Task.Delay(1000);
 
-            Logs.Insert(0, log);
+            if(log.ActivityType == Activity.ActivityType && isActivitySelected)
+                Logs.Insert(0, log);
+            if(!isActivitySelected)
+                Logs.Insert(0, log);
 
             showTableLoading = false;
         }
-        protected async Task OnActivityShowLogs(ActivityModel activity)
+        protected async Task OnActivityShowLogs(ActivityModel activityModel)
         {
+            Activity = activityModel;
             showTableLoading = true;
+            isActivitySelected = true;
 
             await Task.Delay(1000);
 
             Logs = _appState.Projects?
                 .SelectMany(project => project.Activity?? new())
-                .Where(activity => activity.ActivityType == activity.ActivityType)
+                .Where(activity => activity.ActivityType == activityModel.ActivityType)
                 .SelectMany(activity => activity.LogEntries?? new()).ToList()?? new();
 
             showTableLoading = false;
