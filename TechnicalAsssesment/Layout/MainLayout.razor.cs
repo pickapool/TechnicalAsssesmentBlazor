@@ -39,7 +39,7 @@ namespace TechnicalAsssesment.Layout
                     activity.LogEntries = new();
                     project.Activity.Add(activity);
                 }
-                _appState.Projects.Add(project);
+                _appState.Projects?.Add(project);
             }
         }
         protected async Task NewUser()
