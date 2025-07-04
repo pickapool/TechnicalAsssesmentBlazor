@@ -13,10 +13,6 @@ namespace TechnicalAsssesment.Components
         [Parameter] public EventCallback<ProjectModel> SelectedProject { get; set; }
         protected List<ProjectModel> listOfProjects = new();
         protected bool showDropDown;
-        protected override void OnInitialized()
-        {
-            listOfProjects = _appState.Projects?.Clone()?? new();
-        }
         protected async Task OnValueChanged(ChangeEventArgs eventArg)
         {
             Value = eventArg.Value?.ToString();
