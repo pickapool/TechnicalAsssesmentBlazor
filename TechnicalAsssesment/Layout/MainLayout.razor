@@ -10,7 +10,7 @@
     {
         //Render
         <div class="height100vh w-100 d-flex align-content-center justify-content-center">
-            <UserInformationComponent OnProceed="(e)=> OnProceed(e)" AppState="_appState"></UserInformationComponent>
+            <UserInformationComponent OnProceed="(AppStateService appState)=> OnProceed(appState)" AppState="_appState"></UserInformationComponent>
         </div>
     } else {
 
