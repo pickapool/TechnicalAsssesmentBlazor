@@ -12,6 +12,7 @@ namespace TechnicalAsssesment.Pages
         [Inject] protected AppStateService _appState { get; set; } = default!;
         protected bool showActivities = false, showSkeleton = false, showTable, isTableLoading;
         protected ProjectModel? selectedProject;
+        protected List<LogEntryModel> Logs = new();
         protected async Task OnProjectSelected(ProjectModel p)
         {
             selectedProject = p;
@@ -20,6 +21,15 @@ namespace TechnicalAsssesment.Pages
             await Task.Delay(2000);
             showSkeleton = false;
             showActivities = true;
+        }
+        protected async Task LoadAddEntries()
+        {
+            isTableLoading = true;
+            StateHasChanged();
+            await Task.Delay(1000);
+            Logs = _appState.Projects.SelectMany(e => e.Activity).SelectMany(e => e.LogEntries).ToList();
+            isTableLoading = false;
+            StateHasChanged();
         }
     }
 }

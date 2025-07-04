@@ -30,8 +30,43 @@
 			</MudGrid>
 		}
 	}
-	@if(showTable)
+	@if(selectedProject != null)
 	{
-
+		<MudTable Class="log-table w-100" Items="@Logs"  ItemSize="30" Loading="isTableLoading" Elevation="3" Hover Striped Dense>
+			<ToolBarContent>
+				<MudButton OnClick="LoadAddEntries" Class="text-right border-25 mb-4" StartIcon="@Icons.Material.Filled.Refresh" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small">Load all Entries</MudButton>
+			</ToolBarContent>
+			<ColGroup>
+				<col />
+				<col />
+				<col />
+				<col style="width: 30%;" />
+				<col style="width: 10%;" />
+				<col style="width: 10%;" />
+			</ColGroup>
+			<HeaderContent>
+				<MudTh>Name</MudTh>
+				<MudTh>Project #</MudTh>
+				<MudTh>Activity Type</MudTh>
+				<MudTh>Note</MudTh>
+				<MudTh>Time</MudTh>
+				<MudTh>Duration</MudTh>
+			</HeaderContent>
+			<RowTemplate	>
+				<MudTd DataLabel="Name">@context.UserInformation?.UserName</MudTd>
+				<MudTd DataLabel="Project #">@context.ProjectNumber</MudTd>
+				<MudTd DataLabel="Type">
+					<MudChip T="string" Size="Size.Small">
+						@Extensions.GetEnumDescription(context.ActivityType)
+					</MudChip>
+				</MudTd>
+				<MudTd DataLabel="Note">@context.Note</MudTd>
+				<MudTd DataLabel="Time">@context.Time</MudTd>
+				<MudTd DataLabel="Duration">@context.Duration</MudTd>
+			</RowTemplate>
+			<PagerContent>
+				<MudTablePager PageSizeOptions="new int[] { 10, 25, 50, 100 }" />
+			</PagerContent>
+		</MudTable>
 	}
 </div>

@@ -75,7 +75,6 @@ a, .btn-link {
 }
 .height100vh {
     height: 100vh;
-    overflow: hidden;
 }
 .width100 {
     width: 100%;
@@ -130,4 +129,11 @@ a, .btn-link {
     max-height: 400px;
     overflow-y: auto;
     z-index: 1000;
+}
+.log-table {
+    height: calc(100vh - 400px);
+}
+.log-table .mud-table-container {
+    height: calc(100vh - 510px);
+    overflow: auto;
 }

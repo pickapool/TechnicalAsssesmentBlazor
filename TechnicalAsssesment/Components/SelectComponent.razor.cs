@@ -15,7 +15,7 @@ namespace TechnicalAsssesment.Components
         protected bool showDropDown = false;
         protected override void OnInitialized()
         {
-            listOfProjects = _appState.Projects.Clone();
+            listOfProjects = _appState.Projects?.Clone()?? new();
         }
         protected async Task OnValueChanged(ChangeEventArgs e)
         {

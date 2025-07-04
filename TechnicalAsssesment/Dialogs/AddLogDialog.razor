@@ -9,12 +9,12 @@
     </TitleContent>
     <DialogContent>
         <div class="d-flex flex-column gap-1 pa-2" style="width: 400px">
-            <TextFieldComponent Label="Time"></TextFieldComponent>
-            <TextAreaComponent Label="Note (Optional)"></TextAreaComponent>
+            <TextFieldComponent @bind-Value="LogEntry.Time" Label="Time (minutes)" ShowError="showError"></TextFieldComponent>
+            <TextAreaComponent @bind-Value="LogEntry.Note" Label="Note (Optional)"></TextAreaComponent>
         </div>
     </DialogContent>
     <DialogActions>
-        <MudButton Class="text-right border-25 mb-4" StartIcon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small">Add</MudButton>
-        <MudButton Class="text-right border-25 mb-4" OnClick="Cancel">Cancel</MudButton>
+        <MudButton OnClick="Submit" Class="text-right border-25 mb-4" StartIcon="@Icons.Material.Filled.Add" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small">Add</MudButton>
+        <MudButton OnClick="Cancel" Class="text-right border-25 mb-4">Cancel</MudButton>
     </DialogActions>
 </MudDialog>
