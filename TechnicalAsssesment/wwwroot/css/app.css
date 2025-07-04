@@ -89,9 +89,29 @@ a, .btn-link {
     display: flex !important;
     justify-content: center !important;
 }
-#app {
-    background-color: #d0e3d0;
-}
 .border-25 {
     border-radius: 25px !important;
+}
+.tfield-container {
+    width: 60%;
+}
+.center-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-paper {
+    height: 80px;
+    border-bottom: 1px solid #d3d3d3;
+    background-color: #87939d;
+    border-radius: 25px 25px 0 0;
+}
+.header-paper *{
+    color: white;
+}
+.mud-button-filled.mud-button-filled-primary {
+    background-color: #87939d !important;
+}
+.error-message {
+    color: red;
 }

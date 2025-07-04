@@ -1,6 +1,10 @@
 ﻿@inherits TextFieldComponentBase
 
-<div class="d-flex flex-column gap-2" style="width: 100%;">
-	<span>@Label</span>
-	<input class="input px-3 py-4" type="text" value="@Value" placeholder="Type here..."/>
+<div class="d-flex flex-column" style="width: 100%;">
+	<span class="pb-2">@Label</span>
+	<input class="input px-3 py-4" type="text" value="@Value" @onchange="OnValueChanged" placeholder="Type here..." />
+	@if (ShowError)
+	{
+		<small class="error-message">Field is required*</small>
+	}
 </div>
