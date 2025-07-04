@@ -1,23 +1,24 @@
 ﻿@inherits SelectComponentBase
 
-<MudItem xs="12" sm="10" md="7" lg="5">
+<MudItem Class="w-100" xs="12" sm="10" md="7" lg="5">
     <div class="position-relative w-100">
         <span class="pb-2">@Label</span>
         <input class="input px-3 py-4 w-100"
                type="text"
                value="@Value"
-               @onclick="ToggleDropDown"
-               @onfocusout="ToggleDropDown"
                @oninput="OnValueChanged"
                placeholder="Type here..." />
 
         @if (showDropDown)
         {
-            <div class="dropdown-panel d-flex flex-column shadow bg-white border rounded mt-1 position-absolute gap-2 pa-1"
-                 style="top: 100%; left: 0; width: 100%; max-height: 200px; overflow-y: auto; z-index: 1000;">
-                @foreach (var project in listOfProjects)
-                {
-                    <MudButton OnClick="()=> OnProjectSelect(project)" Class="px-3 py-4 d-flex justify-content-start" Size="Size.Medium">@project.ProjectNumber</MudButton>
+            <div class="dropdown-panel d-flex flex-column shadow bg-white border rounded mt-1 position-absolute gap-2 pa-1">
+                @if (listOfProjects.Count <= 0) {
+                    <MudText>No Data Found</MudText>
+                } else {
+                    @foreach (var project in listOfProjects)
+                    {
+                        <MudButton OnClick="()=> OnProjectSelect(project)" Class="flex-shrink-0 px-3 py-4 d-flex justify-content-start" Size="Size.Medium">@project.ProjectNumber</MudButton>
+                    }
                 }
             </div>
         }

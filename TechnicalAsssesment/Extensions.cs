@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace TechnicalAsssesment
 {
@@ -10,5 +12,18 @@ namespace TechnicalAsssesment
             var deserializeSettings = new JsonSerializerSettings { ObjectCreationHandling = ObjectCreationHandling.Replace };
             return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source), deserializeSettings);
         }
+        public static string GetEnumDescription(Enum value)
+        {
+            var enumMember = value.GetType().GetMember(value.ToString()).FirstOrDefault();
+            var descriptionAttribute =
+                enumMember == null
+                    ? default(DescriptionAttribute)
+                    : enumMember.GetCustomAttribute(typeof(DescriptionAttribute)) as DescriptionAttribute;
+            return
+                descriptionAttribute == null
+                    ? value.ToString()
+                    : descriptionAttribute.Description;
+        }
+
     }
 }

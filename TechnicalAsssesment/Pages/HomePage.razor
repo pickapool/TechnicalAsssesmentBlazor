@@ -3,7 +3,31 @@
 @inherits HomePageBase
 
 <PageTitle>Time Tracking</PageTitle>
-<div class="d-flex justify-content-center">
+<div class="d-flex flex-column justify-content-center align-items-center gap-4">
 	<SelectComponent Label="Select Project" SelectedProject="(e)=> OnProjectSelected(e)"></SelectComponent>
-
+	@if (showSkeleton)
+	{
+		<MudGrid Spacing="3">
+			@for (int i = 0; i < 4; i++)
+			{
+				<MudItem xs="12" md="3" lg="3" Class="d-flex gap-4 flex-row w-100">
+					<ActivitySkeletonComponent></ActivitySkeletonComponent>
+				</MudItem>
+			}
+		</MudGrid>
+	}
+	else
+	{
+		@if (isShowActivities)
+		{
+			<MudGrid Spacing="3">
+				@foreach (var activity in selectedProject.Activity)
+				{
+					<MudItem xs="12" md="3" lg="3" Class="d-flex gap-4 flex-row w-100">
+						<ActivityComponent Activity="activity.ActivityType"></ActivityComponent>
+					</MudItem>
+				}
+			</MudGrid>
+		}
+	}
 </div>

@@ -30,7 +30,9 @@ namespace TechnicalAsssesment.Components
         }
         protected async Task OnProjectSelect(ProjectModel p)
         {
+            ToggleDropDown();
             await SelectedProject.InvokeAsync(p);
+            
         }
         protected void ToggleDropDown()
         {

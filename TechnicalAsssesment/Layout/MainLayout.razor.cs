@@ -29,12 +29,14 @@ namespace TechnicalAsssesment.Layout
             {
                 ProjectModel project = new();
                 project.ProjectNumber = i;
-                foreach(Enums.ActivityType type in Enum.GetValues(typeof(Enums.ActivityType)))
+                project.Activity = new();
+                foreach (Enums.ActivityType type in Enum.GetValues(typeof(Enums.ActivityType)))
                 {
                     ActivityModel activity = new();
-                    activity.ProjectNumber = project;
+                    activity.ProjectNumber = project.ProjectNumber;
                     activity.ActivityType = type;
                     activity.LogEntries = new();
+                    project.Activity.Add(activity);
                 }
                 _appState.Projects.Add(project);
             }
