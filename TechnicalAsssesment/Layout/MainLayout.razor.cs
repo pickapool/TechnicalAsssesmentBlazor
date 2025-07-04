@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using System.Threading.Tasks;
 using TechnicalAssesment.Domain;
 using TechnicalAssesment.Domain.Entities;
 using TechnicalAssesment.Infrastructure;
@@ -40,6 +41,12 @@ namespace TechnicalAsssesment.Layout
                 }
                 _appState.Projects.Add(project);
             }
+        }
+        protected async Task NewUser()
+        {
+            _appState.UserInformation = null;
+            await Task.Delay(1000);
+            _appState.UserInformation = new();
         }
     }
 }
