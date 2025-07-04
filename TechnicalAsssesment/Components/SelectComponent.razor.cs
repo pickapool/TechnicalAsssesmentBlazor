@@ -12,27 +12,29 @@ namespace TechnicalAsssesment.Components
         [Parameter] public EventCallback<string> ValueChanged { get; set; }
         [Parameter] public EventCallback<ProjectModel> SelectedProject { get; set; }
         protected List<ProjectModel> listOfProjects = new();
-        protected bool showDropDown = false;
+        protected bool showDropDown;
         protected override void OnInitialized()
         {
             listOfProjects = _appState.Projects?.Clone()?? new();
         }
-        protected async Task OnValueChanged(ChangeEventArgs e)
+        protected async Task OnValueChanged(ChangeEventArgs eventArg)
         {
-            Value = e.Value?.ToString();
+            Value = eventArg.Value?.ToString();
             await ValueChanged.InvokeAsync(Value);
+
             listOfProjects = _appState.Projects?
-                .Where(p => p.ProjectNumber.ToString().Contains(Value ?? string.Empty))
+                .Where(project => project.ProjectNumber.ToString().Contains(Value ?? string.Empty))
                 .Take(10)
                 .ToList()?? new();
+
             showDropDown = true;
             StateHasChanged();
         }
-        protected async Task OnProjectSelect(ProjectModel p)
+        protected async Task OnProjectSelect(ProjectModel project)
         {
-            Value = p.ProjectNumber.ToString();
+            Value = project.ProjectNumber.ToString();
             ToggleDropDown();
-            await SelectedProject.InvokeAsync(p);
+            await SelectedProject.InvokeAsync(project);
             
         }
         protected void ToggleDropDown()

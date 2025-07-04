@@ -10,7 +10,7 @@ namespace TechnicalAsssesment.Components
         [Parameter] public AppStateService AppState { get; set; } = default!;
         [Parameter] public EventCallback<AppStateService> OnProceed { get; set; }
         protected string username = string.Empty;
-        protected bool showError = false;
+        protected bool showError;
         protected async Task SetUserInformation()
         {
             if (AppState.UserInformation == null)

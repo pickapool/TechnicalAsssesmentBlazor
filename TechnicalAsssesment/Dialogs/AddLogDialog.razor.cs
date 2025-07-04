@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using System.Threading.Tasks;
 using TechnicalAssesment.Domain;
 using TechnicalAssesment.Domain.Entities;
 using TechnicalAssesment.Infrastructure;
@@ -14,8 +13,8 @@ namespace TechnicalAsssesment.Dialogs
         [Parameter] public ProjectModel? Project { get; set; }
         [Parameter] public ActivityModel? Activity { get; set; }
         protected LogEntryModel? LogEntry = new();
-        protected bool showError = false;
-        protected string errorText = "Field is required*";
+        protected bool showError;
+        protected string errorText = "Field is required * ";
         protected void Submit()
         {
             int minutes;
@@ -28,14 +27,17 @@ namespace TechnicalAsssesment.Dialogs
 
             if (String.IsNullOrEmpty(LogEntry?.Duration))
             {
+                errorText = "Field is required * ";
                 showError = true;
                 return;
             }
 
+            //Rounded minutes rounded next quarter hour
             int roundedMinutes = (int)Math.Ceiling(minutes / 15.0) * 15;
             _appState.TotalAccumulatedHours += roundedMinutes;
 
             showError = false;
+
             LogEntry.ProjectNumber = Project?.ProjectNumber;
             LogEntry.ActivityType = Activity?.ActivityType ?? Enums.ActivityType.Recruitment;
             LogEntry.UserInformation = _appState.UserInformation;
@@ -44,6 +46,7 @@ namespace TechnicalAsssesment.Dialogs
                 .Find(e => e.ProjectNumber == Project?.ProjectNumber)?.Activity?
                 .Find(e => e.ActivityType == Activity?.ActivityType)?.LogEntries?
                 .Insert(0, LogEntry);
+
             MudDialog?.Close(DialogResult.Ok(LogEntry));
         }
         protected void Cancel() => MudDialog?.Cancel();

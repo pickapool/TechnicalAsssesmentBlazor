@@ -12,28 +12,35 @@ namespace TechnicalAsssesment.Components
         [Inject] protected AppStateService _appState { get; set; } = default!;
         [Inject] protected IDialogService _dialogService { get; set; } = default!;
         [Parameter] public EventCallback<LogEntryModel> OnLogCreated { get; set; }
+        [Parameter] public EventCallback<ActivityModel> OnShowActivityLog { get; set; }
         [Parameter] public ProjectModel? Project { get; set; }
         [Parameter] public ActivityModel? Activity { get; set; }
 
         protected async Task OpenAddLogDialog()
         {
-            var param = new DialogParameters();
-            param.Add("Project", Project);
-            param.Add("Activity", Activity);
-            var options = new DialogOptions() { CloseButton = false, MaxWidth = MaxWidth.Large, BackdropClick = false };
-            var dialogRef = await _dialogService.ShowAsync<AddLogDialog>("", param, options);
-            var result = await dialogRef.Result;
-            if (result != null)
+            DialogParameters dialogParameter = new DialogParameters();
+            dialogParameter.Add("Project", Project);
+            dialogParameter.Add("Activity", Activity);
+
+            DialogOptions dialogOptions = new DialogOptions() { CloseButton = false, MaxWidth = MaxWidth.Large, BackdropClick = false };
+
+            IDialogReference dialogReference = await _dialogService.ShowAsync<AddLogDialog>("", dialogParameter, dialogOptions);
+            DialogResult dialogResult = await dialogReference.Result;
+            if (dialogResult != null)
             {
-                if (!result.Canceled)
+                if (!dialogResult.Canceled)
                 {
-                    LogEntryModel log = (LogEntryModel)result.Data;
-                    Project = _appState.Projects?.FirstOrDefault(p => p.ProjectNumber == Project?.ProjectNumber);
-                    Activity = Project?.Activity?.FirstOrDefault(a => a.ActivityType == Activity?.ActivityType);
+                    LogEntryModel log = (LogEntryModel)dialogResult.Data;
+                    Project = _appState.Projects?.FirstOrDefault(project => project.ProjectNumber == Project?.ProjectNumber);
+                    Activity = Project?.Activity?.FirstOrDefault(activity => activity.ActivityType == Activity?.ActivityType);
                     await OnLogCreated.InvokeAsync(log);
                     StateHasChanged();
                 }
             }
+        }
+        protected async Task ShowActivityLogs()
+        {
+            await OnShowActivityLog.InvokeAsync(Activity);
         }
     }
 }

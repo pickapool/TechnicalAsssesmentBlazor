@@ -26,10 +26,10 @@ namespace TechnicalAsssesment.Layout
         }
         private void GenerateProject()
         {
-            for (int i = 1000; i < 2000; i++)
+            for (int projectNumber = 1000; projectNumber < 2000; projectNumber++)
             {
                 ProjectModel project = new();
-                project.ProjectNumber = i;
+                project.ProjectNumber = projectNumber;
                 project.Activity = new();
                 foreach (Enums.ActivityType type in Enum.GetValues(typeof(Enums.ActivityType)))
                 {

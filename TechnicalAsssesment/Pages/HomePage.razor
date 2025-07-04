@@ -24,7 +24,12 @@
 				@foreach (var activity in selectedProject.Activity)
 				{
 					<MudItem xs="12" md="3" lg="3" Class="d-flex gap-4 flex-row w-100">
-						<ActivityComponent Project="selectedProject" Activity="activity" OnLogCreated="(e) => OnLogCreated(e)"></ActivityComponent>
+						<ActivityComponent 
+							Project="selectedProject" 
+							Activity="activity" 
+							OnLogCreated="(LogEntryModel l) => OnLogCreated(l)"
+							OnShowActivityLog="(ActivityModel a)=> OnActivityShowLogs(a)">
+						</ActivityComponent>
 					</MudItem>
 				}
 			</MudGrid>
@@ -32,7 +37,7 @@
 	}
 	@if(selectedProject != null)
 	{
-		<MudTable Class="log-table w-100" Items="@Logs"  ItemSize="30" Loading="isTableLoading" Elevation="3" Hover Striped Dense>
+		<MudTable Class="log-table w-100" Items="@Logs" ItemSize="30" Loading="showTableLoading" Elevation="3" Hover Striped Dense>
 			<ToolBarContent>
 				<div class="d-flex flex-row align-items-center w-100">
 					<MudButton OnClick="LoadAllEntries" Class="text-right border-25 mb-4" StartIcon="@Icons.Material.Filled.Refresh" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small">Load all Entries</MudButton>
