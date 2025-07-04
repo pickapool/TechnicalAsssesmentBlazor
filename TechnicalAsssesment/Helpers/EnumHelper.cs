@@ -1,17 +1,10 @@
-﻿using Newtonsoft.Json;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Reflection;
 
-namespace TechnicalAsssesment
+namespace TechnicalAsssesment.Helpers
 {
-    public static class Extensions
+    public static class EnumHelper
     {
-        public static T Clone<T>(this T source)
-        {
-            if (ReferenceEquals(source, null)) return default;
-            var deserializeSettings = new JsonSerializerSettings { ObjectCreationHandling = ObjectCreationHandling.Replace };
-            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source), deserializeSettings);
-        }
         public static string GetEnumDescription(Enum value)
         {
             var enumMember = value.GetType().GetMember(value.ToString()).FirstOrDefault();
@@ -24,10 +17,5 @@ namespace TechnicalAsssesment
                     ? value.ToString()
                     : descriptionAttribute.Description;
         }
-        public static double ConvertToHour(double minutes)
-        {
-            return minutes / 60.0;
-        }
-
     }
 }

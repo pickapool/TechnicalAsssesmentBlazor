@@ -43,7 +43,7 @@
 					<MudButton OnClick="LoadAllEntries" Class="text-right border-25 mb-4" StartIcon="@Icons.Material.Filled.Refresh" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small">Load all Entries</MudButton>
 					<MudSpacer/>
 					<MudText Typo="Typo.h6"> Total Hours Accumulated - </MudText>
-					<MudChip T="string" Size="Size.Large" Color="Color.Success">@Extensions.ConvertToHour(_appState.TotalAccumulatedHours)</MudChip>
+					<MudChip T="string" Size="Size.Large" Color="Color.Success">@TimeHelper.ConvertToHourFormat(_appState.TotalAccumulatedHours)</MudChip>
 				</div>
 			</ToolBarContent>
 			<ColGroup>
@@ -67,7 +67,7 @@
 				<MudTd Class="text-center" DataLabel="Project #">@context.ProjectNumber</MudTd>
 				<MudTd Class="text-center" DataLabel="Type">
 					<MudChip T="string" Size="Size.Small">
-						@Extensions.GetEnumDescription(context.ActivityType)
+						@EnumHelper.GetEnumDescription(context.ActivityType)
 					</MudChip>
 				</MudTd>
 				<MudTd DataLabel="Note">@context.Note</MudTd>

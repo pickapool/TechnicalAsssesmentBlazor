@@ -1,6 +1,6 @@
 ﻿<MudCard Class="w-100 border-25">
     <MudCardContent>
-        <MudText Typo="Typo.h6">@Extensions.GetEnumDescription(Activity.ActivityType)</MudText>
+        <MudText Typo="Typo.h6">@EnumHelper.GetEnumDescription(Activity.ActivityType)</MudText>
         <MudText Typo="Typo.h3">
             <b>@(Activity.LogEntries == null ? "0" : Activity.LogEntries.Count)</b>
         </MudText>
