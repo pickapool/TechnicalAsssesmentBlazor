@@ -6,32 +6,30 @@
 <MudSnackbarProvider />
 
 @if (_appState.UserInformation != null) {
-    <UserComponent>
-        @if(String.IsNullOrEmpty(_appState.UserInformation.UserName))
-        {
-            //Render
-            <div class="height100vh width100 d-flex align-content-center justify-content-center">
-                <UserInformationComponent OnProceed="(e)=> OnProceed(e)" AppState="_appState"></UserInformationComponent>
-            </div>
-        } else {
+    @if(String.IsNullOrEmpty(_appState.UserInformation.UserName))
+    {
+        //Render
+        <div class="height100vh width100 d-flex align-content-center justify-content-center">
+            <UserInformationComponent OnProceed="(e)=> OnProceed(e)" AppState="_appState"></UserInformationComponent>
+        </div>
+    } else {
 
-            <div class="page">
-                @*         <div class="sidebar">^
-                    <NavMenu />
+        <div class="page">
+            @*         <div class="sidebar">^
+                <NavMenu />
+            </div>
+*@
+            <main>
+                <div class="top-row px-4">
+                    Welcome, @_appState.UserInformation.UserName
                 </div>
-    *@
-                <main>
-                    <div class="top-row px-4">
-                        Welcome, @_appState.UserInformation.UserName
-                    </div>
 
-                    <article class="content px-4">
-                        @Body
-                    </article>
-                </main>
-            </div>
-        }
-    </UserComponent>
+                <article class="content px-4">
+                    @Body
+                </article>
+            </main>
+        </div>
+    }
 } else
 {
     <div class="center-flex height100vh">
