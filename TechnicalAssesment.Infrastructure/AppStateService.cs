@@ -11,5 +11,6 @@ namespace TechnicalAssesment.Infrastructure
     {
         public UserInformationModel? UserInformation;
         public List<ProjectModel>? Projects;
+        public double TotalAccumulatedHours;
     }
 }

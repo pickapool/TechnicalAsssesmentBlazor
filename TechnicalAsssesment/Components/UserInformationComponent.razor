@@ -8,7 +8,7 @@
 		<div class="d-flex flex-column align-items-center tfield-container  pa-4">
 			@if (String.IsNullOrEmpty(AppState.UserInformation?.UserName))
 			{
-				<TextFieldComponent @bind-Value="username" Label="Name" ShowError="showError" />
+				<TextFieldComponent @bind-Value="username" Label="Name" ShowError="showError" ErrorMessage="Field is required*" />
 			}
 		</div>
 		<MudButton OnClick="SetUserInformation" Class="text-right border-25 mb-4" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small">Proceed</MudButton>

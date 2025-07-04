@@ -24,6 +24,10 @@ namespace TechnicalAsssesment
                     ? value.ToString()
                     : descriptionAttribute.Description;
         }
+        public static double ConvertToHour(double minutes)
+        {
+            return minutes / 60.0;
+        }
 
     }
 }

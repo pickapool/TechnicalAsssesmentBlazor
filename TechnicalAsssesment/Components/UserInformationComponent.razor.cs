@@ -18,13 +18,11 @@ namespace TechnicalAsssesment.Components
             if(String.IsNullOrEmpty(username))
             {
                 showError = true;
-                StateHasChanged();
                 return;
             }
             showError = false;
             AppState.UserInformation.UserName = username;
             await OnProceed.InvokeAsync(AppState);
-            StateHasChanged();
         }
     }
 }

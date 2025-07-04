@@ -5,6 +5,6 @@
 	<input class="input px-3 py-4" type="text" value="@Value" @onchange="OnValueChanged" placeholder="Type here..." />
 	@if (ShowError)
 	{
-		<small class="error-message">Field is required*</small>
+		<small class="error-message">@ErrorMessage</small>
 	}
 </div>

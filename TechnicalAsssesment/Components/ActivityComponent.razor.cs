@@ -11,6 +11,7 @@ namespace TechnicalAsssesment.Components
     {
         [Inject] protected AppStateService _appState { get; set; } = default!;
         [Inject] protected IDialogService _dialogService { get; set; } = default!;
+        [Parameter] public EventCallback<LogEntryModel> OnLogCreated { get; set; }
         [Parameter] public ProjectModel? Project { get; set; }
         [Parameter] public ActivityModel? Activity { get; set; }
 
@@ -26,8 +27,10 @@ namespace TechnicalAsssesment.Components
             {
                 if (!result.Canceled)
                 {
+                    LogEntryModel log = (LogEntryModel)result.Data;
                     Project = _appState.Projects?.FirstOrDefault(p => p.ProjectNumber == Project?.ProjectNumber);
                     Activity = Project?.Activity?.FirstOrDefault(a => a.ActivityType == Activity?.ActivityType);
+                    await OnLogCreated.InvokeAsync(log);
                     StateHasChanged();
                 }
             }

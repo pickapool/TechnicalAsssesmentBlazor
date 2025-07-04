@@ -9,7 +9,7 @@
     </TitleContent>
     <DialogContent>
         <div class="d-flex flex-column gap-1 pa-2" style="width: 400px">
-            <TextFieldComponent @bind-Value="LogEntry.Time" Label="Time (minutes)" ShowError="showError"></TextFieldComponent>
+            <TextFieldComponent @bind-Value="LogEntry.Duration" Label="Duration (minutes)" ShowError="showError" ErrorMessage="@errorText"></TextFieldComponent>
             <TextAreaComponent @bind-Value="LogEntry.Note" Label="Note (Optional)"></TextAreaComponent>
         </div>
     </DialogContent>

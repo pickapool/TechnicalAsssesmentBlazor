@@ -21,10 +21,10 @@ namespace TechnicalAsssesment.Components
         {
             Value = e.Value?.ToString();
             await ValueChanged.InvokeAsync(Value);
-            listOfProjects = _appState.Projects
+            listOfProjects = _appState.Projects?
                 .Where(p => p.ProjectNumber.ToString().Contains(Value ?? string.Empty))
                 .Take(10)
-                .ToList();
+                .ToList()?? new();
             showDropDown = true;
             StateHasChanged();
         }

@@ -13,23 +13,32 @@ namespace TechnicalAsssesment.Pages
         protected bool showActivities = false, showSkeleton = false, showTable, isTableLoading;
         protected ProjectModel? selectedProject;
         protected List<LogEntryModel> Logs = new();
+        protected override async Task OnInitializedAsync()
+        {
+            await LoadAllEntries();
+        }
         protected async Task OnProjectSelected(ProjectModel p)
         {
             selectedProject = p;
             showSkeleton = true;
-            StateHasChanged();
-            await Task.Delay(2000);
+            await Task.Delay(1000);
             showSkeleton = false;
             showActivities = true;
         }
-        protected async Task LoadAddEntries()
+        protected async Task LoadAllEntries()
         {
             isTableLoading = true;
-            StateHasChanged();
             await Task.Delay(1000);
-            Logs = _appState.Projects.SelectMany(e => e.Activity).SelectMany(e => e.LogEntries).ToList();
+            Logs = _appState.Projects?.SelectMany(e => e.Activity?? new()).SelectMany(e => e.LogEntries?? new()).ToList()?? new();
             isTableLoading = false;
-            StateHasChanged();
+        }
+        protected async Task OnLogCreated(LogEntryModel log)
+        {
+            if (log is null) return;
+            isTableLoading = true;
+            await Task.Delay(1000);
+            Logs.Insert(0, log);
+            isTableLoading = false;
         }
     }
 }

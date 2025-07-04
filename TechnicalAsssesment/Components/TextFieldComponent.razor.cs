@@ -9,6 +9,7 @@ namespace TechnicalAsssesment.Components
         [Parameter] public EventCallback<string> ValueChanged { get; set; }
         [Parameter] public string Label { get; set; } = string.Empty;
         [Parameter] public bool ShowError { get; set; }
+        [Parameter] public string? ErrorMessage { get; set; }
         protected async Task OnValueChanged(ChangeEventArgs e)
         {
             Value = e.Value?.ToString();

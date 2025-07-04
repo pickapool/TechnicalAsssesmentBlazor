@@ -24,7 +24,7 @@
 				@foreach (var activity in selectedProject.Activity)
 				{
 					<MudItem xs="12" md="3" lg="3" Class="d-flex gap-4 flex-row w-100">
-						<ActivityComponent Project="selectedProject" Activity="activity"></ActivityComponent>
+						<ActivityComponent Project="selectedProject" Activity="activity" OnLogCreated="(e) => OnLogCreated(e)"></ActivityComponent>
 					</MudItem>
 				}
 			</MudGrid>
@@ -34,7 +34,12 @@
 	{
 		<MudTable Class="log-table w-100" Items="@Logs"  ItemSize="30" Loading="isTableLoading" Elevation="3" Hover Striped Dense>
 			<ToolBarContent>
-				<MudButton OnClick="LoadAddEntries" Class="text-right border-25 mb-4" StartIcon="@Icons.Material.Filled.Refresh" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small">Load all Entries</MudButton>
+				<div class="d-flex flex-row align-items-center w-100">
+					<MudButton OnClick="LoadAllEntries" Class="text-right border-25 mb-4" StartIcon="@Icons.Material.Filled.Refresh" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small">Load all Entries</MudButton>
+					<MudSpacer/>
+					<MudText Typo="Typo.h6"> Total Hours Accumulated - </MudText>
+					<MudChip T="string" Size="Size.Large" Color="Color.Success">@Extensions.ConvertToHour(_appState.TotalAccumulatedHours)</MudChip>
+				</div>
 			</ToolBarContent>
 			<ColGroup>
 				<col />
@@ -46,23 +51,25 @@
 			</ColGroup>
 			<HeaderContent>
 				<MudTh>Name</MudTh>
-				<MudTh>Project #</MudTh>
-				<MudTh>Activity Type</MudTh>
+				<MudTh Class="text-center">Project #</MudTh>
+				<MudTh Class="text-center">Activity Type</MudTh>
 				<MudTh>Note</MudTh>
-				<MudTh>Time</MudTh>
-				<MudTh>Duration</MudTh>
+				<MudTh Class="text-center">Time</MudTh>
+				<MudTh Class="text-center">Duration</MudTh>
 			</HeaderContent>
 			<RowTemplate	>
 				<MudTd DataLabel="Name">@context.UserInformation?.UserName</MudTd>
-				<MudTd DataLabel="Project #">@context.ProjectNumber</MudTd>
-				<MudTd DataLabel="Type">
+				<MudTd Class="text-center" DataLabel="Project #">@context.ProjectNumber</MudTd>
+				<MudTd Class="text-center" DataLabel="Type">
 					<MudChip T="string" Size="Size.Small">
 						@Extensions.GetEnumDescription(context.ActivityType)
 					</MudChip>
 				</MudTd>
 				<MudTd DataLabel="Note">@context.Note</MudTd>
-				<MudTd DataLabel="Time">@context.Time</MudTd>
-				<MudTd DataLabel="Duration">@context.Duration</MudTd>
+				<MudTd Class="text-center" DataLabel="Time">@context.Time?.ToString("HH:mm tt")</MudTd>
+				<MudTd Class="text-center" DataLabel="Duration">
+					@context.Duration
+				</MudTd>
 			</RowTemplate>
 			<PagerContent>
 				<MudTablePager PageSizeOptions="new int[] { 10, 25, 50, 100 }" />
