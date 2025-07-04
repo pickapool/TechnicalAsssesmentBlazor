@@ -43,7 +43,7 @@
 					<MudButton OnClick="LoadAllEntries" Class="text-right border-25 mb-4" StartIcon="@Icons.Material.Filled.Refresh" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small">Load all Entries</MudButton>
 					<MudSpacer/>
 					<MudText Typo="Typo.h6"> Total Hours Accumulated - </MudText>
-					<MudChip T="string" Size="Size.Large" Color="Color.Success">@TimeHelper.ConvertToHourFormat(_appState.TotalAccumulatedHours)</MudChip>
+					<MudChip T="string" Size="Size.Large" Color="Color.Success">@TimeHelper.ConvertToHour(_appState.TotalAccumulatedHours).ToString("N2")</MudChip>
 				</div>
 			</ToolBarContent>
 			<ColGroup>
@@ -60,7 +60,7 @@
 				<MudTh Class="text-center">Activity Type</MudTh>
 				<MudTh>Note</MudTh>
 				<MudTh Class="text-center">Logged Time</MudTh>
-				<MudTh Class="text-center">Duration</MudTh>
+				<MudTh Class="text-center">Duration (minutes)</MudTh>
 			</HeaderContent>
 			<RowTemplate	>
 				<MudTd DataLabel="Name">@context.UserInformation?.UserName</MudTd>
@@ -72,7 +72,7 @@
 				</MudTd>
 				<MudTd DataLabel="Note">@context.Note</MudTd>
 				<MudTd Class="text-center" DataLabel="Time">@context.Time?.ToString("HH:mm tt")</MudTd>
-				<MudTd Class="text-center" DataLabel="Duration">@context.Duration</MudTd>
+				<MudTd Class="text-center" DataLabel="Duration (minutes)">@context.Duration</MudTd>
 			</RowTemplate>
 			<PagerContent>
 				<MudTablePager PageSizeOptions="new int[] { 10, 25, 50, 100 }" />
