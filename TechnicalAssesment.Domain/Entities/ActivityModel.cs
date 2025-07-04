@@ -4,6 +4,6 @@
     {
         public ProjectModel? ProjectNumber { get; set; }
         public Enums.ActivityType ActivityType { get; set; }
-        List<LogEntryModel>? LogEntries { get; set; }
+        public List<LogEntryModel>? LogEntries { get; set; }
     }
 }
